@@ -20,6 +20,9 @@ class Dog(Animal) :
             print(f"{self.name}이 {args[0]}를 먹습니다.")
         if(len(args) == 2) :
             print(f"{self.name}이 {args[0]}와 {args[1]} 먹습니다.")
+# 인스턴스 : 클래스를 사용할수 있는 변수에 넣은 상태
+# 상속 : 부모의 코드를 재사용
+# 오버라이드 : 부모의 메소드를 재정의
 
 # 강아지 클래스는 기존 Animal이 가지고 있는 기능을 모두 가지고 있다.
 # 추가적으로 변형되어 speak 메소드랑 새로운 eat 메소드를 가지고 있다.
@@ -29,3 +32,6 @@ my_dog.eat("뼈다귀")
 my_dog.eat("뼈다귀", "사료")
 my_dog.speak()  # 오버라이드
 my_dog.info()
+     
+
+
