@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test1.mapper.TestMapper">
+	<!-- 상품 불러오기 -->
+	<select id="getProductInfo" parameterType="hashmap" resultType="com.example.test1.model.Test">
+		SELECT *
+		FROM TEST_PRODUCT
+		WHERE PRODUCT_NO = #{productNo}
+	</select>
+	
+	<!-- 상품 삭제하기 -->
+	<delete id="removeProduct" parameterType="hashmap">
+		DELETE FROM TEST_PRODUCT
+		WHERE PRODUCT_NO = #{productNo}
+	</delete>
+	
+	<!-- 상품 수정하기 -->
+	<update id="updatePrice" parameterType="hashmap">
+		UPDATE TEST_PRODUCT
+		SET PRODUCT_PRICE = #{productPrice}
+		WHERE PRODUCT_NO = #{productNo}
+	</update>
+	
+	<!-- 상품 추가하기 -->
+	<insert id="insertProduct" parameterType="hashmap">
+		INSERT INTO TEST_PRODUCT (PRODUCT_NO, PRODUCT_NAME, PRODUCT_PRICE) 
+		VALUES (PRODUCT_SEQ.NEXTVAL, #{productName}, #{productPrice})
+	</insert>
+	
+	<!-- 상품 불러오기 및 검색 -->
+	<select id="getListSearch" parameterType="hashmap" resultType="com.example.test1.model.Test">
+		SELECT *
+		FROM TEST_PRODUCT
+		<choose>
+			<when test="keyWord">
+				WHERE PRODUCT_NAME LIKE '%'||#{keyWord}||'%'
+			</when>
+			<otherwise>
+				ORDER BY PRODUCT_NO
+			</otherwise>
+		</choose>
+	</select>
+</mapper>
